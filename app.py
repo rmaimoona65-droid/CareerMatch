@@ -1,6 +1,5 @@
 
-
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -10,14 +9,14 @@ def home():
     return render_template("index.html")
 
 
-# Test Route
+# Test API
 @app.route("/test")
 def test():
-    return jsonify({
-        "message": "CareerMatch website is working successfully!"
-    })
+    return {
+        "message": "CareerMatch is working successfully!"
+    }
 
 
-# Run Application
 if __name__ == "__main__":
     app.run(debug=True)
+
