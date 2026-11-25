@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerMatch | Find your next opportunity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" onclick="showPage('home');return false;"><span class="brand-mark">C</span><span>Career<span>Match</span></span></a>
+  <nav><a href="#" class="nav-link active" data-page="home">Home</a><a href="#" class="nav-link" data-page="jobs">Find Jobs</a><a href="#" class="nav-link" data-page="matcher">AI Resume Match</a></nav>
+  <div class="top-actions"><button class="text-btn" id="loginBtn">Log in</button><button class="btn btn-small" id="joinBtn">Join Now</button><button class="menu-btn" id="menuBtn">☰</button></div>
+</header>
+
+<main>
+<section id="homePage" class="page active">
+  <section class="hero">
+    <div class="hero-glow"></div><div class="hero-content">
+      <span class="eyebrow"><span class="pulse"></span> YOUR NEXT CHAPTER STARTS HERE</span>
+      <h1>Find your dream job.<br><span>Make your move.</span></h1>
+      <p class="hero-sub">Explore opportunities that match your skills, goals, and ambitions. Your next career move starts with one search.</p>
+      <form class="search-panel" id="homeSearch">
+        <label class="search-field"><span>⌕</span><input id="homeKeyword" placeholder="Job title, skill or keyword" /></label>
+        <label class="search-field"><span>⌖</span><input id="homeLocation" placeholder="City or remote" /></label>
+        <button class="btn" type="submit">Search jobs <span>→</span></button>
+      </form>
+      <div class="popular"><span>Popular searches</span><button data-search="Frontend Developer">Frontend</button><button data-search="Python Developer">Python</button><button data-search="Data Analyst">Data Analyst</button><button data-search="UI UX Designer">UI/UX</button></div>
+      <div class="hero-stats"><div><strong>Explore</strong><small>multiple career fields</small></div><i></i><div><strong>Discover</strong><small>relevant opportunities</small></div><i></i><div><strong>Apply</strong><small>with confidence</small></div></div>
+    </div>
+    <div class="hero-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="floating-card card-top"><span class="mini-icon">✦</span><div><b>Find your fit</b><small>Opportunities for you</small></div><span class="live-dot"></span></div>
+      <div class="art-window"><div class="window-head"><span></span><span></span><span></span><label>career-match / dashboard</label></div><div class="window-body"><div class="welcome-line"><div><small>GOOD MORNING</small><h3>Your career, your way.</h3></div><div class="avatar">CM</div></div><div class="match-preview"><div class="ring"><b>86<small>%</small></b></div><div><small>PROFILE MATCH</small><strong>Strong potential</strong><p>Discover roles that fit your skills.</p></div></div><div class="skill-bars"><div><span>Python</span><i><b style="width:88%"></b></i></div><div><span>Problem solving</span><i><b style="width:72%"></b></i></div><div><span>Communication</span><i><b style="width:65%"></b></i></div></div><div class="window-job"><div class="company-icon">N</div><div><b>Data Analyst</b><small>Northstar Labs · Remote</small></div><span>↗</span></div></div></div>
+      <div class="floating-card card-bottom"><span class="check-circle">✓</span><div><b>One place for your search</b><small>Search · Compare · Apply</small></div></div>
+    </div>
+  </section>
+  <section class="section categories-section"><div class="section-heading"><div><span class="eyebrow">FIND YOUR DIRECTION</span><h2>Explore by <span>category</span></h2></div><button class="inline-link" onclick="showPage('jobs')">View all jobs →</button></div><p class="section-desc">Discover opportunities across industries and find a role that feels right.</p><div class="category-grid" id="categoryGrid"></div></section>
+  <section class="section featured-section"><div class="section-heading"><div><span class="eyebrow">HANDPICKED FOR YOUR SEARCH</span><h2>Featured <span>opportunities</span></h2></div><button class="inline-link" onclick="showPage('jobs')">Explore all jobs →</button></div><div class="job-grid" id="featuredJobs"></div></section>
+  <section class="match-banner"><div><span class="eyebrow">A SMARTER WAY TO APPLY</span><h2>Not sure if you're a good fit?</h2><p>Compare your resume with a job description and see which skills stand out and what you can improve.</p><button class="btn btn-light" onclick="showPage('matcher')">Try AI Resume Match →</button></div><div class="banner-score"><div class="banner-ring">78<span>%</span></div><small>YOUR MATCH SCORE</small><b>Good match</b></div></section>
+</section>
+
+<section id="jobsPage" class="page">
+  <section class="page-hero"><span class="eyebrow">OPPORTUNITIES THAT MOVE YOU FORWARD</span><h1>Find a job that <span>fits your future.</span></h1><p>Search roles by title, skill, company, or location.</p>
+    <form class="search-panel compact" id="jobsSearch"><label class="search-field"><span>⌕</span><input id="jobsKeyword" placeholder="Job title, skills or company"></label><label class="search-field"><span>⌖</span><input id="jobsLocation" placeholder="Location"></label><button class="btn" type="submit">Search jobs →</button></form>
+  </section>
+  <section class="section results-section"><div class="results-top"><div><span class="eyebrow">YOUR SEARCH RESULTS</span><h2><span id="resultCount">0</span> opportunities <small>to explore</small></h2></div><select id="sortJobs" aria-label="Sort jobs"><option value="recent">Most relevant</option><option value="az">Company A–Z</option></select></div>
+    <div class="filter-chips"><button class="filter-chip selected" data-type="all">All jobs</button><button class="filter-chip" data-type="Remote">Remote</button><button class="filter-chip" data-type="Full-time">Full-time</button><button class="filter-chip" data-type="Internship">Internship</button><button class="filter-chip" data-type="Entry-level">Entry-level</button></div>
+    <div class="results-layout"><aside class="filters"><h3>Refine results</h3><label>Experience level<select id="experienceFilter"><option value="">Any experience</option><option>Entry-level</option><option>Mid-level</option><option>Senior</option><option>Internship</option></select></label><label>Work type<select id="typeFilter"><option value="">Any work type</option><option>Remote</option><option>Hybrid</option><option>On-site</option></select></label><label>Job category<select id="categoryFilter"><option value="">All categories</option><option>Technology</option><option>Data & Analytics</option><option>Design</option><option>Marketing</option><option>Business</option></select></label><button class="reset-btn" id="resetFilters">Reset filters</button></aside><div class="job-list" id="jobList"></div></div>
+  </section>
+</section>
+
+<section id="matcherPage" class="page">
+  <section class="match-hero">
+    <div class="match-copy">
+      <a class="match-brand" href="#" onclick="showPage('home');return false;"><span class="brand-mark">C</span><span>Career<span>Match</span></span></a>
+      <h1>See how well<br>you match.<br><span>Land interviews.</span></h1>
+      <p>Our AI analyzes the job description and your resume to calculate your match score, highlight strengths, and show what to improve.</p>
+      <div class="match-features">
+        <div><span class="feature-icon">◎</span><div><b>Accurate match scoring</b><small>Analysis of keywords, skills, and experience.</small></div></div>
+        <div><span class="feature-icon">↗</span><div><b>Actionable insights</b><small>See what you're missing and get recommendations to improve.</small></div></div>
+        <div><span class="feature-icon">▤</span><div><b>Tailored to the job</b><small>Personalized feedback for the specific role you want.</small></div></div>
+      </div>
+    </div>
+    <div class="match-dashboard" id="matchResults">
+      <div class="dashboard-head"><div class="dashboard-title"><span class="gauge-icon">◉</span><div><h2>Job Match Score</h2><p>Data Analyst · New York, NY</p></div></div><button class="share-btn" id="shareReport">⇧ &nbsp; Share Report</button></div>
+      <div class="dashboard-content">
+        <div class="score-panel"><div class="big-score-ring" id="scoreRing"><div><strong id="scoreValue">78%</strong><small id="scoreLabel">Good Match</small></div></div><p id="scoreMessage">You have a strong match for this role. Focus on the missing keywords to increase your score.</p><div class="score-potential"><span>↗</span><div><b id="potentialText">+18%</b><small>Score increase potential<br>with missing keywords</small></div></div></div>
+        <div class="keyword-panel">
+          <div class="keyword-heading"><div><span class="status-icon good">✓</span><b>Matched Keywords</b></div><strong id="matchedCount">13 found</strong></div>
+          <div class="keyword-list" id="matchedWords"><span class="keyword">SQL</span><span class="keyword">Python</span><span class="keyword">Excel</span><span class="keyword">Data Analysis</span><span class="keyword">Tableau</span><span class="keyword">Power BI</span><span class="keyword">Data Visualization</span><span class="keyword">Statistics</span><span class="keyword">A/B Testing</span><span class="keyword">Dashboards</span><span class="keyword">ETL</span><span class="keyword">Data Modeling</span><span class="keyword">Reporting</span></div>
+          <div class="keyword-heading missing-heading"><div><span class="status-icon warn">!</span><b>Missing Keywords</b></div><strong id="missingCount">7 missing</strong></div>
+          <div class="keyword-list" id="missingWords"><span class="keyword missing">Machine Learning</span><span class="keyword missing">Predictive Modeling</span><span class="keyword missing">Looker</span><span class="keyword missing">BigQuery</span><span class="keyword missing">Experiment Design</span><span class="keyword missing">Git</span><span class="keyword missing">Cloud Platform (AWS/GCP)</span></div>
+        </div>
+      </div>
+      <div class="dashboard-tip"><span>♧</span><p><b>Tip:</b> Add these missing keywords to your resume and experience sections where relevant to improve your match score.</p><button class="share-btn" onclick="document.getElementById('analyzerForm').scrollIntoView({behavior:'smooth'})">View Recommendations</button></div>
+    </div>
+  </section>
+  <section class="section analyzer-section" id="analyzerForm"><div class="analyzer-heading"><span class="eyebrow">PERSONALIZED RESUME ANALYSIS</span><h2>Check your <span>own job match</span></h2><p>Paste your resume and the job description to generate your match report.</p></div>
+    <div class="analyzer-card"><label class="upload-box" for="resumeFile"><span class="upload-icon">↑</span><b>Upload your resume</b><small>Choose a TXT file, or paste your resume text below. PDF/DOC files require a document reader integration.</small><input type="file" id="resumeFile" accept=".txt,.pdf,.doc,.docx"></label>
+      <div class="analyzer-fields"><label class="input-label">Resume text<textarea id="resumeText" rows="7" placeholder="Paste your resume text here, including skills, experience and education..."></textarea></label><label class="input-label">Job description<textarea id="jobDescription" rows="7" placeholder="Paste the job description here..."></textarea></label></div>
+      <button class="btn full-btn" id="analyzeBtn">Analyze my match <span>→</span></button><p class="privacy-note">This demo analyzes text in your browser. Your resume is not uploaded to a server.</p>
+    </div>
+  </section>
+</section>
+</main>
+<footer><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>Career<span>Match</span></span></a><p>Helping you discover your next opportunity.</p><small>© 2026 CareerMatch. Demo project.</small></footer>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+</body></html>
